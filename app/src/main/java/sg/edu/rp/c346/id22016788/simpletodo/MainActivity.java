@@ -71,26 +71,25 @@ public class MainActivity extends AppCompatActivity {
 
         btnRemove.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view){
+            public void onClick(View view) {
                 String position = Input1.getText().toString();
                 int position1 = Integer.parseInt(position);
-                if (ToDoListArr.isEmpty()){
-                    String message = "You don't have any tasks to remove";
-                    int NotificationDuration = Toast.LENGTH_LONG;
-                    Toast toast = Toast.makeText(MainActivity.this, message, NotificationDuration);
-                    toast.show();
+                    if (ToDoListArr.isEmpty()) {
+                        String message = "You don't have any tasks to remove";
+                        int NotificationDuration = Toast.LENGTH_LONG;
+                        Toast toast = Toast.makeText(MainActivity.this, message, NotificationDuration);
+                        toast.show();
+                    } else if (position1 >= 0 && position1 < ToDoListArr.size()){
+                        ToDoListArr.remove(position1);
+                        DoList.notifyDataSetChanged();
+                    }
+                    else {
+                        String message1 = "Wrong index number";
+                        int NotificationDuration1 = Toast.LENGTH_LONG;
+                        Toast toast = Toast.makeText(MainActivity.this, message1, NotificationDuration1);
+                        toast.show();
+                    }
                 }
-                else if (position1 > ToDoListArr.size()){
-                    String message1 = "Wrong index number";
-                    int NotificationDuration1 = Toast.LENGTH_LONG;
-                    Toast toast = Toast.makeText(MainActivity.this, message1, NotificationDuration1);
-                    toast.show();
-                }
-                else {
-                    ToDoListArr.remove(position1);
-                    DoList.notifyDataSetChanged();
-                }
-            }
         });
 
         btnClear.setOnClickListener(new View.OnClickListener() {
